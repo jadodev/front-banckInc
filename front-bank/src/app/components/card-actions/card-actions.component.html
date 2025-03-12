@@ -1,0 +1,16 @@
+<div class="buttons-container">
+    <h2 class="title-actions">¿Qué deseas hacer?</h2>
+    <div class="container-btns">
+        <button class="action-button reload" (click)="onReload()">Recargar tarjeta</button>
+        <button class="action-button transactions" (click)="onViewTransactions()">Ver movimientos</button>
+        <button class="action-button cancel" (click)="onCancelTransaction()">Anular transacción</button>
+    </div>
+</div>
+
+<div *ngIf="showRechargeForm">
+    <app-recharger></app-recharger>
+</div>
+
+<div *ngIf="showTransactions">
+    <transaction-list [cardNumber]="cardNumber || ''"></transaction-list>
+</div>

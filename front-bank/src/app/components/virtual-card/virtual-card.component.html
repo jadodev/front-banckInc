@@ -1,0 +1,28 @@
+<div class="credit-card">
+    <div class="card-header">
+      <div class="card-chip">
+        <img [src]="'assets/images/chip.png'" alt="chip">
+      </div>
+      <div class="card-type">{{ cardType }}</div>
+    </div>
+  
+    <div class="card-number">
+      {{ cardNumber }}
+    </div>
+  
+    <div class="card-details">
+      <div>
+        <div class="label">Titular</div>
+        <div>{{ titularName }}</div>
+      </div>
+      <div>
+        <div class="label">Expira</div>
+        <div>{{ expirationDate | date:'MM/yy' }}</div>
+      </div>
+    </div>
+  
+    <div class="card-footer">
+      <span>Saldo: ${{ balance | number:'1.2-2' }}</span>
+    </div>
+  </div>
+  

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { VirtualCardComponent } from '../../components/virtual-card/virtual-card.component';
+import { CardActionsComponent } from '../../components/card-actions/card-actions.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, VirtualCardComponent, CardActionsComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
@@ -21,7 +23,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.cardNumber)
 
     if (this.cardNumber) {
-      this.http.get<any>(`http://localhost:8080/api/cards/${this.cardNumber}`).subscribe({
+      this.http.get<any>(`http://44.197.200.249:8080/api/cards/${this.cardNumber}`).subscribe({
         next: (response) => {
           this.cardInfo = response;
         },

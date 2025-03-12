@@ -1,0 +1,28 @@
+<div class="recharge-container">
+    <div class="recharge-card">
+      <h2 class="recharge-title">Recarga tu Tarjeta</h2>
+      
+      <form [formGroup]="rechargeForm" (ngSubmit)="onSubmit()">
+        <label class="recharge-label">Monto a Recargar</label>
+        <input formControlName="amount" type="number" class="recharge-input" placeholder="Ej: 110.50" />
+  
+        <label class="recharge-label">Número de Tarjeta</label>
+        <input formControlName="cardNumber" type="text" class="recharge-input" placeholder="1234 5678 9101 1121" />
+  
+        <button type="submit" class="recharge-button" >Recargar</button>
+      </form>
+  
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
+  
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+  
+      <div *ngIf="isLoading" class="loading-message">
+        Cargando...
+      </div>
+    </div>
+  </div>
+  
