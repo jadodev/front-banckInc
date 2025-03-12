@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { VirtualCardComponent } from '../../components/virtual-card/virtual-card.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, VirtualCardComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
