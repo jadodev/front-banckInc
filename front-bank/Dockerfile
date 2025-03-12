@@ -16,13 +16,13 @@ RUN npm run build -- --configuration=production
 FROM nginx:alpine
 
 # Copia los archivos construidos desde la etapa anterior
-COPY --from=builder /app/dist/tu-proyecto-angular /usr/share/nginx/html
+COPY --from=builder /app/dist/front-bank/browser /usr/share/nginx/html
 
 # Copia una configuración personalizada de Nginx (opcional)
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 # Expone el puerto en el que Nginx servirá la aplicación
-EXPOSE 4200
+EXPOSE 80
 
 # Inicia el servidor Nginx
 CMD ["nginx", "-g", "daemon off;"]
