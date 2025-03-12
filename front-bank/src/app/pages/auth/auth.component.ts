@@ -68,7 +68,7 @@ export class AuthComponent {
       password: formData.password
     };
 
-    this.http.post<UserResponse>('http://localhost:8081/users', userData).subscribe({
+    this.http.post<UserResponse>('http://52.55.154.142:8081/users', userData).subscribe({
       next: (response) => {
         this.isRegister = false;
       },
@@ -80,20 +80,20 @@ export class AuthComponent {
   }
 
   loginUser(formData: any) {
-    const username = formData.email;
-
-    this.http.get<any>(`http://localhost:8081/users/search?username=${username}`).subscribe({
+    const username = formData.email; 
+  
+    this.http.get<any>(`http://52.55.154.142:8081/users/search?username=${username}`).subscribe({
       next: (response) => {
+        console.log(response); 
+  
         if (response && response.password === formData.password) {
-
-          const userId = response.id;
-          const cardNumber = this.getCookie('cardNumber');
+  
           const currentUserCookie = this.getCookie('userId');
-
-          if (!currentUserCookie || currentUserCookie !== userId.toString()) {
-            this.cookieService.set('userId', userId.toString(), { path: '/', expires: new Date(new Date().getTime() + 3600 * 1000) });
-
-            this.http.get<any>(`http://localhost:8080/api/cards/${userId}`).subscribe({
+  
+          if (!currentUserCookie || currentUserCookie !== username) {
+            this.cookieService.set('userId', username, { path: '/', expires: new Date(new Date().getTime() + 3600 * 1000) });
+  
+            this.http.get<any>(`http://44.197.200.249:8080/api/cards/${username}`).subscribe({
               next: (cardResponse) => {
                 if (cardResponse) {
                   this.cookieService.set('cardNumber', cardResponse.cardNumber, { path: '/', expires: new Date(new Date().getTime() + 3600 * 1000) });
@@ -104,7 +104,7 @@ export class AuthComponent {
               }
             });
           }
-
+  
           this.router.navigate(['/profile']);
         } else {
           alert('Credenciales incorrectas');
@@ -116,5 +116,6 @@ export class AuthComponent {
       }
     });
   }
+  
 }
 

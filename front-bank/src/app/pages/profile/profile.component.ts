@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.cardNumber)
 
     if (this.cardNumber) {
-      this.http.get<any>(`http://localhost:8080/api/cards/${this.cardNumber}`).subscribe({
+      this.http.get<any>(`http://44.197.200.249:8080/api/cards/${this.cardNumber}`).subscribe({
         next: (response) => {
           this.cardInfo = response;
         },

@@ -55,7 +55,7 @@ interface CardResponse {
       if (cardNumber) {
         this.router.navigate(['/profile']);
       } else {
-        this.http.post<CardResponse>('http://localhost:8080/api/cards', formData).subscribe({
+        this.http.post<CardResponse>('http://44.197.200.249:8080/api/cards', formData).subscribe({
           next: (response) => {
             if (response) {
               this.cookieService.set('cardNumber', response.cardNumber); 

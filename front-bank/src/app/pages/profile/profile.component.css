@@ -6,7 +6,7 @@
     color: #222222;
 
     /* Imagen de fondo */
-    background-image: url('/assets/images/background-1.webp');
+    background-image: url('../../../assets/images/background-1.webp');
     background-size: cover;
     background-position: center; 
     background-repeat: no-repeat;

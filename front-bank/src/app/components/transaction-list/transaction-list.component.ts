@@ -9,7 +9,7 @@ import { Component, Input } from '@angular/core';
   styleUrl: './transaction-list.component.css'
 })
 export class TransactionListComponent {
-  @Input() cardNumber: string = '';  // Se recibe el número de tarjeta como entrada
+  @Input() cardNumber: string = '';
   transactions: any[] = [];
   isLoading: boolean = true;
   error: string = '';
@@ -26,7 +26,7 @@ export class TransactionListComponent {
   }
 
   fetchTransactions(): void {
-    this.http.get<any[]>(`http://localhost:8082/api/transactions/card/${this.cardNumber}`).subscribe({
+    this.http.get<any[]>(`http://107.21.77.240:8085/api/transactions/card/${this.cardNumber}`).subscribe({
       next: (data) => {
         this.transactions = data;
         this.isLoading = false;
