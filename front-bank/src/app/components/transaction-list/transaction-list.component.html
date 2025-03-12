@@ -1,0 +1,31 @@
+<div class="transaction-list-container">
+    <h2>Mis Transacciones</h2>
+  
+    <div *ngIf="isLoading" class="loading">
+      Cargando transacciones...
+    </div>
+  
+    <div *ngIf="error" class="error-message">
+      {{ error }}
+    </div>
+  
+    <div *ngIf="!isLoading && transactions.length === 0" class="no-transactions">
+      Aún no tienes transacciones.
+    </div>
+  
+    <div *ngIf="!isLoading && transactions.length > 0" class="transactions">
+      <div *ngFor="let transaction of transactions" class="transaction-item">
+        <div class="transaction-details">
+          <p><strong>Fecha:</strong> {{ transaction.date }}</p>
+          <p><strong>Monto:</strong> ${{ transaction.amount }}</p>
+          <p><strong>Descripción:</strong> {{ transaction.description }}</p>
+        </div>
+        <div class="transaction-status">
+          <span [ngClass]="transaction.status === 'COMPLETED' ? 'completed' : 'pending'">
+            {{ transaction.status }}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+  

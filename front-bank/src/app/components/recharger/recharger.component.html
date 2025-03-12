@@ -1,30 +1,27 @@
-<div class="transaction-list-container">
-    <h2>Mis Transacciones</h2>
+<div class="recharge-container">
+    <div class="recharge-card">
+      <h2 class="recharge-title">Recarga tu Tarjeta</h2>
+      
+      <form [formGroup]="rechargeForm" (ngSubmit)="onSubmit()">
+        <label class="recharge-label">Monto a Recargar</label>
+        <input formControlName="amount" type="number" class="recharge-input" placeholder="Ej: 110.50" />
   
-    <div *ngIf="isLoading" class="loading">
-      Cargando transacciones...
-    </div>
+        <label class="recharge-label">Número de Tarjeta</label>
+        <input formControlName="cardNumber" type="text" class="recharge-input" placeholder="1234 5678 9101 1121" />
   
-    <div *ngIf="error" class="error-message">
-      {{ error }}
-    </div>
+        <button type="submit" class="recharge-button" >Recargar</button>
+      </form>
   
-    <div *ngIf="!isLoading && transactions.length === 0" class="no-transactions">
-      Aún no tienes transacciones.
-    </div>
+      <div *ngIf="successMessage" class="success-message">
+        {{ successMessage }}
+      </div>
   
-    <div *ngIf="!isLoading && transactions.length > 0" class="transactions">
-      <div *ngFor="let transaction of transactions" class="transaction-item">
-        <div class="transaction-details">
-          <p><strong>Fecha:</strong> {{ transaction.date }}</p>
-          <p><strong>Monto:</strong> ${{ transaction.amount }}</p>
-          <p><strong>Descripción:</strong> {{ transaction.description }}</p>
-        </div>
-        <div class="transaction-status">
-          <span [ngClass]="transaction.status === 'COMPLETED' ? 'completed' : 'pending'">
-            {{ transaction.status }}
-          </span>
-        </div>
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+  
+      <div *ngIf="isLoading" class="loading-message">
+        Cargando...
       </div>
     </div>
   </div>
