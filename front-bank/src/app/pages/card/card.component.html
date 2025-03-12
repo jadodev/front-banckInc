@@ -1,0 +1,22 @@
+<div class="create-card">
+    <h2 class="title-card">Obtener nuestra tarjeta</h2>
+    <form [formGroup]="cardForm" (ngSubmit)="onSubmit()" class="form-container">
+        <label for="productId" class="form-label">Cédula del Usuario:</label>
+        <input type="text" id="productId" formControlName="productId" required class="form-input" 
+        placeholder="Numero de cedula"/>
+      
+        <label for="titularName" class="form-label">Nombre del Titular:</label>
+        <input type="text" id="titularName" formControlName="titularName" required class="form-input"
+        placeholder="Nombre y Apellido" />
+      
+        <label for="cardType" class="form-label">Tipo de Tarjeta:</label>
+        <select formControlName="cardType" id="cardType" class="form-input">
+          <option value="CREDITO">Crédito</option>
+          <option value="DEBITO">Débito</option>
+        </select>
+      
+        <button type="submit" class="form-button">
+          Crear Tarjeta
+        </button>
+      </form>    
+</div>
