@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
 import { VirtualCardComponent } from '../../components/virtual-card/virtual-card.component';
 import { CardActionsComponent } from '../../components/card-actions/card-actions.component';
+import { CookieService } from 'ngx-cookie-service';
+import { CardService } from '../../services/card.service';
 
 @Component({
   selector: 'app-profile',
@@ -16,20 +17,24 @@ export class ProfileComponent implements OnInit {
   cardNumber: string | null = null;
   cardInfo: any = null; 
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private cardService:CardService,
+    private router: Router, 
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit(): void {
-    this.cardNumber = this.getCookie('cardNumber');
-    console.log(this.cardNumber)
+    this.cardNumber = this.cookieService.get('cardNumber');
 
     if (this.cardNumber) {
-      this.http.get<any>(`http://44.197.200.249:8080/api/cards/${this.cardNumber}`).subscribe({
+      this.cardService.getCardByNumber(this.cardNumber).subscribe({
         next: (response) => {
           this.cardInfo = response;
         },
         error: (error) => {
-          console.error('Error al obtener los detalles de la tarjeta:', error);
-          alert('No se pudo obtener la información de la tarjeta');
+          console.error('Error al obtener la tarjeta:', error);
+          alert('No se pudo obtener la información de la tarjeta.');
+          this.router.navigate(['/create-card']);
         }
       });
     } else {

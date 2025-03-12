@@ -1,0 +1,12 @@
+<div class="cancel-transaction">
+    <h2>Anular Transacción</h2>
+    
+    <input [(ngModel)]="transactionId" type="text" placeholder="ID de la transacción">
+    
+    <button (click)="cancelTransaction()" [disabled]="isLoading">
+      {{ isLoading ? 'Anulando...' : 'Anular' }}
+    </button>
+    
+    <p *ngIf="message">{{ message }}</p>
+  </div>
+  

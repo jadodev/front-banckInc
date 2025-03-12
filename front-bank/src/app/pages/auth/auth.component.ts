@@ -1,16 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators,ReactiveFormsModule  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
-
-interface UserResponse {
-  id: number;
-  username: string;
-  password: string;
-}
-
+import { AuthService } from '../../services/auth.service';
+import { CardService } from '../../services/card.service';
 
 @Component({
   selector: 'app-auth',
@@ -19,15 +13,15 @@ interface UserResponse {
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.css']
 })
-
 export class AuthComponent {
   authForm: FormGroup;
   isRegister = false;
 
   constructor(
-    private fb: FormBuilder, 
-    private http: HttpClient, 
-    private router:Router,
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private cardService: CardService,
+    private router: Router,
     private cookieService: CookieService
   ) {
     this.authForm = this.fb.group({
@@ -36,7 +30,7 @@ export class AuthComponent {
     });
   }
 
-   getCookie(name: string): string | null {
+  getCookie(name: string): string | null {
     const value = `; ${document.cookie}`;
     const parts = value.split(`; ${name}=`);
     if (parts.length === 2) return parts.pop()?.split(';').shift() || null;
@@ -63,13 +57,10 @@ export class AuthComponent {
   }
 
   registerUser(formData: any) {
-    const userData = {
-      username: formData.email, 
-      password: formData.password
-    };
+    const userData = { username: formData.email, password: formData.password };
 
-    this.http.post<UserResponse>('http://52.55.154.142:8081/users', userData).subscribe({
-      next: (response) => {
+    this.authService.registerUser(userData).subscribe({
+      next: () => {
         this.isRegister = false;
       },
       error: (error) => {
@@ -80,32 +71,25 @@ export class AuthComponent {
   }
 
   loginUser(formData: any) {
-    const username = formData.email; 
+    const username = formData.email;
   
-    this.http.get<any>(`http://52.55.154.142:8081/users/search?username=${username}`).subscribe({
+    this.authService.loginUser(username).subscribe({
       next: (response) => {
-        console.log(response); 
-  
         if (response && response.password === formData.password) {
+          let userId = this.getCookie('userId');
   
-          const currentUserCookie = this.getCookie('userId');
-  
-          if (!currentUserCookie || currentUserCookie !== username) {
-            this.cookieService.set('userId', username, { path: '/', expires: new Date(new Date().getTime() + 3600 * 1000) });
-  
-            this.http.get<any>(`http://44.197.200.249:8080/api/cards/${username}`).subscribe({
-              next: (cardResponse) => {
-                if (cardResponse) {
-                  this.cookieService.set('cardNumber', cardResponse.cardNumber, { path: '/', expires: new Date(new Date().getTime() + 3600 * 1000) });
-                }
-              },
-              error: (error) => {
-                console.error('No se encontró tarjeta para este usuario', error);
-              }
-            });
+          if (!userId) {
+            userId = (Math.floor(Math.random() * 900000) + 100000).toString();
+            this.cookieService.set('userId', userId, { path: '/', expires: new Date(new Date().getTime() + 3600 * 1000) });
           }
   
-          this.router.navigate(['/profile']);
+          const storedCardNumber = this.getCookie('cardNumber');
+  
+          if (!storedCardNumber) {
+            this.router.navigate(['/create-card']);
+          } else {
+            this.router.navigate(['/profile']);
+          }
         } else {
           alert('Credenciales incorrectas');
         }
@@ -118,4 +102,3 @@ export class AuthComponent {
   }
   
 }
-

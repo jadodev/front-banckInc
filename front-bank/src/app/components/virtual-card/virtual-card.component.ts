@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'credit-card',
+  selector: 'virtual-card',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './credit-card.component.html',
-  styleUrls: ['./credit-card.component.css']
+  templateUrl: './virtual-card.component.html',
+  styleUrls: ['./virtual-card.component.css']
 })
 export class VirtualCardComponent {
   @Input() cardNumber!: string;

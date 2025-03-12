@@ -14,3 +14,7 @@
 <div *ngIf="showTransactions">
     <transaction-list [cardNumber]="cardNumber || ''"></transaction-list>
 </div>
+
+<div *ngIf="cancelTransactions">
+    <app-cancel-transaction></app-cancel-transaction>
+</div>

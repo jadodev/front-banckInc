@@ -1,14 +1,14 @@
 <div class="profile-container">
     <h2>Bank Inc</h2>
     <div class="card-wrapper">
-      <credit-card
+      <virtual-card
         *ngIf="cardInfo"
         [cardNumber]="cardInfo.cardNumber"
         [titularName]="cardInfo.titularName"
         [expirationDate]="cardInfo.expirationDate"
         [cardType]="cardInfo.cardType"
         [balance]="cardInfo.balance">
-      </credit-card>
+      </virtual-card>
     </div>
     <card-actions [cardNumber]="cardNumber"></card-actions>
   </div>

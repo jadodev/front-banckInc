@@ -16,7 +16,8 @@
         </select>
       
         <button type="submit" class="form-button">
-          Crear Tarjeta
+          {{ isLoading ? 'Cargando...' : 'Crear Tarjeta' }}
         </button>
+        
       </form>    
 </div>

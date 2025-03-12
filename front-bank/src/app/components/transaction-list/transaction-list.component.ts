@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { Component, Input } from '@angular/core';
+import { TransactionService } from '../../services/transactions.service';
 
 @Component({
   selector: 'transaction-list',
@@ -14,7 +14,7 @@ export class TransactionListComponent {
   isLoading: boolean = true;
   error: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private transactionService: TransactionService) {}
 
   ngOnInit(): void {
     if (this.cardNumber) {
@@ -26,7 +26,7 @@ export class TransactionListComponent {
   }
 
   fetchTransactions(): void {
-    this.http.get<any[]>(`http://107.21.77.240:8085/api/transactions/card/${this.cardNumber}`).subscribe({
+    this.transactionService.getTransactions(this.cardNumber).subscribe({
       next: (data) => {
         this.transactions = data;
         this.isLoading = false;
