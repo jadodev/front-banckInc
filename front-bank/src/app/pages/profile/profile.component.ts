@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { VirtualCardComponent } from '../../components/virtual-card/virtual-card.component';
+import { CardActionsComponent } from '../../components/card-actions/card-actions.component';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [CommonModule, VirtualCardComponent],
+  imports: [CommonModule, VirtualCardComponent, CardActionsComponent],
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })

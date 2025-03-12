@@ -1,0 +1,54 @@
+/* Contenedor de botones */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+/* Estilos generales de los botones */
+.action-button {
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    color: white;
+}
+
+/* Botón de Recargar */
+.action-button.reload {
+    background-color: #038f8f;
+}
+
+.action-button.reload:hover {
+    background-color: #36ac84;
+}
+
+/* Botón de Ver Movimientos */
+.action-button.transactions {
+    background-color: #d39803;
+}
+
+.action-button.transactions:hover {
+    background-color: #d89c05;
+}
+
+/* Botón de Anular Transacción */
+.action-button.cancel {
+    background-color: #222222d2;
+}
+
+.action-button.cancel:hover {
+    background-color: #444444;
+}
+
+.container-btns{
+    display: flex;
+    margin: 8px;
+    gap: 5px;
+}
