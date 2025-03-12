@@ -116,3 +116,7 @@ Para ejecutar el proyecto localmente, puedes utilizar Docker. A continuación, s
 ```bash
   docker run -p 4300:80app-administracion
 ```
+
+### Funcionalidad:
+
+#### Esta app permite registrarse y adquirir una tarjeta debito o credito, agregarle saldo y cancelar alguna transaccion.
