@@ -1,0 +1,124 @@
+.container-wrapper-form{
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  
+    flex-direction: column;
+  
+    background-image: url('/assets/images/background-1.webp');
+    background-size: cover;
+    background-position: center; 
+    background-repeat: no-repeat;
+  }
+  
+  .wrapper {
+    width: 320px;
+    height: 400px;
+    position: absolute;
+  }
+  
+  .card {
+    width: 40%;
+    height: 70%;
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+  }
+  
+  .card.flipped {
+    transform: rotateY(180deg);
+  }
+  
+  .card-face {
+    width: 70%;
+    height: 100%;
+    position: absolute;
+    backface-visibility: hidden;
+    border-radius: 10px;
+    background: #039797;
+    padding: 40px;
+    text-align: center;
+    color: #ffffff;
+    border: 1px solid rgba(64, 23, 88, 0.1);
+    display: flex;
+  }
+  
+  .front {
+    z-index: 2;
+  }
+  
+  .back {
+    transform: rotateY(180deg);
+  }
+  
+  .auth-container input {
+    width: 100%;
+    padding: 15px;
+    border: 2px solid #35bba5;
+    border-radius: 8px;
+    font-size: 16px;
+    background: #ffffff;
+    transition: all 0.3s ease;
+    margin-top: 16px;
+  }
+  
+  .auth-container input:focus {
+    border-color: #04acab;
+    outline: none;
+    box-shadow: 0px 0px 8px rgba(4, 172, 171, 0.5);
+  }
+  
+  .auth-container button {
+    padding: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    color: black;
+    background-color: #fbb607;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  
+  
+  .auth-container button:hover {
+    background: black;
+    transform: scale(1.05);
+    color: #ffffff;
+  }
+  
+  .toggle-text {
+    margin-top: 15px;
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s ease;
+  }
+  
+  .toggle-text:hover {
+    color: #fbb607;
+  }
+  
+  .auth-container h2 {
+    margin-bottom: 24px;
+  }
+  
+  .auth-container label {
+    margin-bottom: 6px; 
+    margin-top: 18px; 
+  }
+  
+  .auth-container input {
+    margin-bottom: 14px;
+  }
+  
+  .auth-container button {
+    margin-top: 22px; 
+  }
+  
+  .toggle-text {
+    margin-top: 20px; 
+  }

@@ -1,0 +1,36 @@
+<div class="container-wrapper-form">
+    <div class="wrapper card" [class.flipped]="isRegister">
+        <div class="card-face front">
+          <div class="auth-container">
+            <h2>Iniciar Sesión</h2>
+            <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+              <label for="login-email">Nombre de Usuario:</label>
+              <input id="login-email" type="text" formControlName="email" placeholder="Ingrese su email" />
+              
+              <label for="login-password">Contraseña:</label>
+              <input id="login-password" type="password" formControlName="password" placeholder="Ingrese su contraseña" />
+              
+              <button type="submit" >Iniciar Sesión</button>
+            </form>
+            <p (click)="toggleMode()" class="toggle-text">¿No tienes cuenta? Regístrate</p>
+          </div>
+        </div>
+      
+        <div class="card-face back">
+          <div class="auth-container">
+            <h2>Registro</h2>
+            <form [formGroup]="authForm" (ngSubmit)="onSubmit()">
+              <label for="register-email">Ingrese su nombre de usuario:</label>
+              <input id="register-email" type="text" formControlName="email" placeholder="Ingrese su email" />
+              
+              <label for="register-password">Contraseña:</label>
+              <input id="register-password" type="password" formControlName="password" placeholder="Ingrese una contraseña" />
+              
+              <button type="submit">Registrarse</button>
+            </form>
+            <p (click)="toggleMode()" class="toggle-text">¿Ya tienes cuenta? Inicia sesión</p>
+          </div>
+        </div>
+      </div>
+</div>
+  
