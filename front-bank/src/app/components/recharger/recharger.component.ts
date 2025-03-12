@@ -8,7 +8,7 @@ import { RechargeService } from '../../services/transactions.service';
   selector: 'app-recharger',
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './recharger.component.html',
-  styleUrl: './recharger.component.css'
+  styleUrls: ['./recharger.component.css']
 })
 export class RechargerComponent {
   rechargeForm: FormGroup;
@@ -26,11 +26,10 @@ export class RechargerComponent {
   onSubmit() {
     if (this.rechargeForm.valid) {
       this.isLoading = true;
+      const cardNumber = this.rechargeForm.value.cardNumber;
+      const amount = parseFloat(this.rechargeForm.value.amount);
 
-      this.rechargeService.rechargeCard(
-        this.rechargeForm.value.cardNumber,
-        this.rechargeForm.value.amount
-      ).subscribe({
+      this.rechargeService.rechargeCard(cardNumber, amount).subscribe({
         next: () => {
           this.isLoading = false;
           this.successMessage = 'Recarga realizada con éxito';

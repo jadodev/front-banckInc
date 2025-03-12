@@ -6,13 +6,14 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class RechargeService {
-  private apiUrl = 'http://54.175.175.233:8085/api/cards';
+  private apiUrl = 'http://3.93.217.90:8080/api/cards';
 
   constructor(private http: HttpClient) {}
 
   rechargeCard(cardNumber: string, amount: number): Observable<any> {
+    const url = `${this.apiUrl}/${cardNumber}/recharge`;
     const rechargeData = { amount };
-    return this.http.post(`${this.apiUrl}/${cardNumber}/recharge`, rechargeData);
+    return this.http.post(url, rechargeData);
   }
 }
 
